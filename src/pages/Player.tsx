@@ -4,19 +4,12 @@ import { Header } from '../components/Header'
 import { Module } from '../components/Module'
 import { Video } from '../components/Video'
 import { useAppSelector } from '../store'
+import { useCurrentLesson } from '../store/slices/player'
 
 export function Player() {
   const modules = useAppSelector((state) => state.player.course.modules)
 
-  const currentLesson = useAppSelector((state) => {
-    const currentLesson =
-      state.player.course.modules[state.player.currentModuleIndex].lessons[
-        state.player.currentLessonIndex
-      ]
-    return currentLesson
-  })
-
-  // const { currentLesson } = useCurrentLesson()
+  const { currentLesson } = useCurrentLesson()
 
   useEffect(() => {
     document.title = `Assistindo ${currentLesson.title}`

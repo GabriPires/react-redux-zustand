@@ -1,18 +1,11 @@
 import ReactPlayer from 'react-player'
 import { useDispatch } from 'react-redux'
-import { useAppSelector } from '../store'
-import { next } from '../store/slices/player'
+import { next, useCurrentLesson } from '../store/slices/player'
 
 export function Video() {
   const dispatch = useDispatch()
 
-  const currentLesson = useAppSelector((state) => {
-    const currentLesson =
-      state.player.course.modules[state.player.currentModuleIndex].lessons[
-        state.player.currentLessonIndex
-      ]
-    return currentLesson
-  })
+  const { currentLesson } = useCurrentLesson()
 
   function handlePlayNext() {
     dispatch(next())
