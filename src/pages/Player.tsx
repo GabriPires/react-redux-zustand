@@ -6,7 +6,10 @@ import { Video } from '../components/Video'
 import { useStore, useZustandCurrentLesson } from '../zustand-store'
 
 export function Player() {
-  const { course, load } = useStore()
+  const { course, load } = useStore((state) => ({
+    course: state.course,
+    load: state.load,
+  }))
 
   const { currentLesson } = useZustandCurrentLesson()
 
