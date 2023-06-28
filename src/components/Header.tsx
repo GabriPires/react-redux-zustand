@@ -1,12 +1,11 @@
-import { useAppSelector } from '../store'
-import { useCurrentLesson } from '../store/slices/player'
+import { useStore, useZustandCurrentLesson } from '../zustand-store'
 
 export function Header() {
-  const { currentLesson, currentModule } = useCurrentLesson()
-  const isCourseLoading = useAppSelector((state) => state.player.isLoading)
+  const { currentLesson, currentModule } = useZustandCurrentLesson()
 
-  if (isCourseLoading)
-    return <h1 className="text-2xl font-bold">Carregando...</h1>
+  const { isLoading } = useStore()
+
+  if (isLoading) return <h1 className="text-2xl font-bold">Carregando...</h1>
 
   return (
     <div className="flex flex-col gap-1">
